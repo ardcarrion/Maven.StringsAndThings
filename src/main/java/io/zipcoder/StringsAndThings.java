@@ -66,10 +66,9 @@ public class StringsAndThings {
     public Boolean gIsHappy(String input){
         //String[] words = input.split("gg");
         //int sequence = input.lastIndexOf("gg");
-        Char[] chars = Char[input.length()];
+        char[] chars = input.toCharArray();
         input.getChars(0, input.length(), chars, 0);
-
-
+        return false;
     }
 
 
@@ -85,18 +84,14 @@ public class StringsAndThings {
         char[] chars = lowerCase.toCharArray();
         int length = chars.length;
         if (length < 3) return 0;
-        int tripleCount = 0;
-        int nextCount = 2;
-        int prevCount = 0;
+        Integer tripleCount = 0;
         int midCount = 1;
-        while (nextCount < length) {
-            char prevChar = chars[prevCount];
+        while (midCount < length-1) {
+            char prevChar = chars[midCount-1];
             char midChar = chars[midCount];
-            char nextChar = chars[nextCount];
+            char nextChar = chars[midCount+1];
             if ((prevChar == midChar) && midChar == nextChar) tripleCount++;
-            prevChar++;
             midCount++;
-            nextCount++;
         }
         return tripleCount;
     }
