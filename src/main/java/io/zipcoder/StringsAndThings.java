@@ -15,7 +15,12 @@ public class StringsAndThings {
      *           countYZ("day fyyyz"); // Should return 2
      */
     public Integer countYZ(String input){
-        return null;
+        String[] words = input.split(" ");
+        Integer count = 0;
+        for (String word : words) {
+            if (word.endsWith("z") || word.endsWith("y")) count++;
+        }
+        return count;
     }
 
     /**
@@ -28,7 +33,8 @@ public class StringsAndThings {
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
     public String removeString(String base, String remove){
-        return null;
+        String result = base.replace(remove, "");
+        return result;
     }
 
     /**
@@ -40,7 +46,14 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        return null;
+        String[] words = input.split(" ");
+        int notCount = 0;
+        int isCount = 0;
+        for (String word : words) {
+            if (word.equals("not")) notCount++;
+            if (word.endsWith("is")) isCount++;
+        }
+        return (notCount == isCount);
     }
 
     /**
@@ -51,7 +64,12 @@ public class StringsAndThings {
      *           gHappy("xxggyygxx") // Should return  false
      */
     public Boolean gIsHappy(String input){
-        return null;
+        //String[] words = input.split("gg");
+        //int sequence = input.lastIndexOf("gg");
+        Char[] chars = Char[input.length()];
+        input.getChars(0, input.length(), chars, 0);
+
+
     }
 
 
@@ -63,6 +81,23 @@ public class StringsAndThings {
      *            countTriple("a") // Should return 0
      */
     public Integer countTriple(String input){
-        return null;
+        String lowerCase = input.toLowerCase();
+        char[] chars = lowerCase.toCharArray();
+        int length = chars.length;
+        if (length < 3) return 0;
+        int tripleCount = 0;
+        int nextCount = 2;
+        int prevCount = 0;
+        int midCount = 1;
+        while (nextCount < length) {
+            char prevChar = chars[prevCount];
+            char midChar = chars[midCount];
+            char nextChar = chars[nextCount];
+            if ((prevChar == midChar) && midChar == nextChar) tripleCount++;
+            prevChar++;
+            midCount++;
+            nextCount++;
+        }
+        return tripleCount;
     }
 }
