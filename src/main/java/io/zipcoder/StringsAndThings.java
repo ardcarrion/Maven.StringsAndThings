@@ -64,11 +64,23 @@ public class StringsAndThings {
      *           gHappy("xxggyygxx") // Should return  false
      */
     public Boolean gIsHappy(String input){
-        //String[] words = input.split("gg");
-        //int sequence = input.lastIndexOf("gg");
         char[] chars = input.toCharArray();
-        input.getChars(0, input.length(), chars, 0);
-        return false;
+        int length = chars.length;
+        if (length < 2) {
+            return false;
+        } else if (length > 2) {
+            int midCount = 1;
+            while (midCount < length-1) {
+                String letter = String.valueOf(chars[midCount]);
+                String prevLetter = String.valueOf(chars[midCount - 1]);
+                String nextLetter = String.valueOf(chars[midCount + 1]);
+                if (letter.equals("g") && !(prevLetter.equals("g") || nextLetter.equals("g"))) return false;
+                midCount++;
+            }
+        } else {
+            return (chars[0] == chars[1]) && String.valueOf(chars[0]).equals("g");
+        }
+        return true;
     }
 
 
